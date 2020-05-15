@@ -5,7 +5,7 @@
 const messagesElement = document.querySelector('#messages');
 
 const renderMessage = (name, message, date) => {
-  // @TODO: funkce vracející HTML zprávy
+  // @TODO: funkce vracející HTML zprávy, vyrobim si element a pomoci .innerHTML ho naplnim, nutne dat tam i obalujici div, jinak se nezkopiruji styly, fce pote vyrobeny HTML element vrati
   const messageElm = document.createElement('div')
   messageElm.className = "card-body"
   messageElm.innerHTML = `
@@ -60,7 +60,7 @@ const onSubmit = (event) => {
     }),
   );
 
-  // @TODO: odešli zprávu na server
+  // @TODO: odešli zprávu na server, JSON.strigify nam vyrobi objekt, fetch = request na server, důležitý je content (= posíláme JSON), body = obsah zpravy jako takovy
   fetch('https://czechichat.herokuapp.com/api/send-message', {
     method: 'POST',
     headers: {
@@ -71,8 +71,6 @@ const onSubmit = (event) => {
       message: messageInputElement.value,
     })
   })
-  nameInputElement.value = '';
-  messageInputElement.value = '';
 };
 
 document.querySelector('#send-form').addEventListener('submit', onSubmit);
